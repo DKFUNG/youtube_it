@@ -369,6 +369,7 @@ class YouTubeIt
         access_control = entry.elements["yt:accessControl"]
 
         noembed = false
+        listed = true
 
         access_control.each do |access|
           case access.attributes["action"]
