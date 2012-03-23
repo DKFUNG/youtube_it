@@ -365,6 +365,22 @@ class YouTubeIt
         title = entry.elements["title"].text
         html_content = entry.elements["content"] ? entry.elements["content"].text : nil
 
+        # check if unlisted and embed status
+        access_control = entry.elements["yt:accessControl"]
+
+        noembed = false
+
+        access_control.each do |access|
+          case access.attributes["action"]
+            when "embed"
+              noembed = access.attributes.permission == 'allowed' ? false : true
+            when "list"
+              listed = access.attributes.permission == 'allowed' ? true : false
+            else
+              # Do nothing
+          end
+        end
+
         # parse the author
         author_element = entry.elements["author"]
         author = nil
@@ -450,7 +466,6 @@ class YouTubeIt
           view_count, favorite_count = 0,0
         end
 
-        noembed     = entry.elements["yt:noembed"] ? true : false
         safe_search = entry.elements["media:rating"] ? true : false
 
         if where = entry.elements["georss:where"]
@@ -492,6 +507,7 @@ class YouTubeIt
           :widescreen     => widescreen,
           :noembed        => noembed,
           :private        => private,
+          :listed         => listed,
           :safe_search    => safe_search,
           :position       => position,
           :latitude       => latitude,

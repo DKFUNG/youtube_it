@@ -55,6 +55,9 @@ class YouTubeIt
         THREE_GPP = YouTubeIt::Model::Video::Format.new(6, :three_gpp)
       end
 
+      # *Boolean*:: Specifies that a video is listed
+      attr_reader :listed
+
       # *Boolean*:: Specifies that a video is private
       attr_reader :private
 
@@ -177,6 +180,17 @@ class YouTubeIt
       #
       # === Returns
       # Boolean: True if the video is private, false if not.
+      def private?
+        @private
+      end
+
+      # Allows you to check whether the video is listed or not.
+      #
+      # === Returns
+      # Boolean: True if the video is listed, false if not.
+      def listed?
+        @listed
+      end
 
       # Provides a URL and various other types of information about a video.
       #
