@@ -112,8 +112,10 @@ class YouTubeIt
             activity << parsed_activity
           end
         end
+        updates_url = (feed.elements['link[attribute::rel="updates"]'].attributes['href'] rescue nil)
         {
-          :updates => (feed.elements['link[attribute::rel="updates"]'].attributes['href'] rescue nil),
+          :updates_url => updates_url,
+          :updates_hash => (updates_url.split('#')[1] rescue nil),
           :activities => activity
         }
       end
