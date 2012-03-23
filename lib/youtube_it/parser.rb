@@ -366,12 +366,10 @@ class YouTubeIt
         html_content = entry.elements["content"] ? entry.elements["content"].text : nil
 
         # check if unlisted and embed status
-        access_control = entry.elements["yt:accessControl"]
-
         noembed = false
         listed = true
 
-        access_control.each do |access|
+        entry.elements.each("yt:accessControl") do |access|
           case access.attributes["action"]
             when "embed"
               noembed = access.attributes.permission == 'allowed' ? false : true
@@ -419,10 +417,9 @@ class YouTubeIt
           widescreen = media_group.elements["yt:aspectRatio"].text == 'widescreen' ? true : false
         end
 
+        private = true
         if media_group.elements["yt:private"].nil?
           private = false
-        else
-          private = true
         end
 
         media_content = []
