@@ -113,7 +113,7 @@ class YouTubeIt
           end
         end
         {
-          :updates => (entry.elements['link[attribute::rel="updates"]'].attributes['href'] rescue nil),
+          :updates => (feed.elements['link[attribute::rel="updates"]'].attributes['href'] rescue nil),
           :activities => activity
         }
       end
