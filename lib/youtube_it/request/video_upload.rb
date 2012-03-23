@@ -231,7 +231,7 @@ class YouTubeIt
       
       # Return's a user's activity feed.
       def get_activity(user, opts)
-        activity_url = "/feeds/api/events?author=%s&v=2&" % (user ? user : "default")
+        activity_url = "/feeds/api/users/%s/events?v=2&" % (user ? user : "default")
         activity_url << opts.collect { |k,p| [k,p].join '=' }.join('&')
         response = yt_session.get(activity_url)
         
