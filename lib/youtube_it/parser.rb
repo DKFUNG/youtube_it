@@ -374,9 +374,9 @@ class YouTubeIt
         access_control.each do |access|
           case access.attributes["action"]
             when "embed"
-              noembed = access.attributes.permission == 'allowed' ? false : true
+              noembed = access.attributes["permission"] == 'allowed' ? false : true
             when "list"
-              listed = access.attributes.permission == 'allowed' ? true : false
+              listed = access.attributes["permission"] == 'allowed' ? true : false
             else
               # Do nothing
           end
