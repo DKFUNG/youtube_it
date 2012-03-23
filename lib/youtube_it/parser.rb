@@ -112,8 +112,10 @@ class YouTubeIt
             activity << parsed_activity
           end
         end
-        
-        return activity
+        {
+          :updates => (entry.elements['link[attribute::rel="updates"]'].attributes['href'] rescue nil),
+          :activities => activity
+        }
       end
       
       protected
@@ -136,7 +138,7 @@ class YouTubeIt
               :type => "video_rated",
               :time => entry.elements["updated"] ? entry.elements["updated"].text : nil,
               :author => entry.elements["author"].elements["name"] ? entry.elements["author"].elements["name"].text : nil,
-              :videos => parse_activity_videos(entry),
+              # :videos => parse_activity_videos(entry),
               :video_id => entry.elements["yt:videoid"] ? entry.elements["yt:videoid"].text : nil
             )
           when "video_shared"
@@ -144,7 +146,7 @@ class YouTubeIt
               :type => "video_shared",
               :time => entry.elements["updated"] ? entry.elements["updated"].text : nil,
               :author => entry.elements["author"].elements["name"] ? entry.elements["author"].elements["name"].text : nil,
-              :videos => parse_activity_videos(entry),
+              # :videos => parse_activity_videos(entry),
               :video_id => entry.elements["yt:videoid"] ? entry.elements["yt:videoid"].text : nil
             )
           when "video_favorited"
@@ -152,7 +154,7 @@ class YouTubeIt
               :type => "video_favorited",
               :time => entry.elements["updated"] ? entry.elements["updated"].text : nil,
               :author => entry.elements["author"].elements["name"] ? entry.elements["author"].elements["name"].text : nil,
-              :videos => parse_activity_videos(entry),
+              # :videos => parse_activity_videos(entry),
               :video_id => entry.elements["yt:videoid"] ? entry.elements["yt:videoid"].text : nil
             )
           when "video_commented"
@@ -174,7 +176,7 @@ class YouTubeIt
               :type => "video_commented",
               :time => entry.elements["updated"] ? entry.elements["updated"].text : nil,
               :author => entry.elements["author"].elements["name"] ? entry.elements["author"].elements["name"].text : nil,
-              :videos => parse_activity_videos(entry),
+              # :videos => parse_activity_videos(entry),
               :video_id => entry.elements["yt:videoid"] ? entry.elements["yt:videoid"].text : nil,
               :comment_thread_url => comment_thread_url,
               :video_url => video_url
@@ -184,7 +186,7 @@ class YouTubeIt
               :type => "video_uploaded",
               :time => entry.elements["updated"] ? entry.elements["updated"].text : nil,
               :author => entry.elements["author"].elements["name"] ? entry.elements["author"].elements["name"].text : nil,
-              :videos => parse_activity_videos(entry),
+              # :videos => parse_activity_videos(entry),
               :video_id => entry.elements["yt:videoid"] ? entry.elements["yt:videoid"].text : nil
             )
           when "friend_added"
