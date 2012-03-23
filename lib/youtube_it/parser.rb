@@ -402,6 +402,12 @@ class YouTubeIt
           widescreen = media_group.elements["yt:aspectRatio"].text == 'widescreen' ? true : false
         end
 
+        if media_group.elements["yt:private"].nil?
+          private = false
+        else
+          private = true
+        end
+
         media_content = []
         media_group.elements.each("media:content") do |mce|
           media_content << parse_media_content(mce)
@@ -485,6 +491,7 @@ class YouTubeIt
           :favorite_count => favorite_count,
           :widescreen     => widescreen,
           :noembed        => noembed,
+          :private        => private,
           :safe_search    => safe_search,
           :position       => position,
           :latitude       => latitude,

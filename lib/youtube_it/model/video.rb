@@ -55,6 +55,9 @@ class YouTubeIt
         THREE_GPP = YouTubeIt::Model::Video::Format.new(6, :three_gpp)
       end
 
+      # *Boolean*:: Specifies that a video is private
+      attr_reader :private
+
       # *Fixnum*:: Duration of a video in seconds.
       attr_reader :duration
 
@@ -169,6 +172,11 @@ class YouTubeIt
       def widescreen?
         @widescreen
       end
+
+      # Allows you to check whether the video is private or not.
+      #
+      # === Returns
+      # Boolean: True if the video is private, false if not.
 
       # Provides a URL and various other types of information about a video.
       #
