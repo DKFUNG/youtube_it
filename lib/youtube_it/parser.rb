@@ -323,7 +323,8 @@ class YouTubeIt
         YouTubeIt::Model::Subscription.new(
           :title        => entry.elements["title"].text,
           :id           => entry.elements["id"].text[/subscription([^<]+)/, 1].sub(':',''),
-          :published    => entry.elements["published"] ? entry.elements["published"].text : nil
+          :published    => entry.elements["published"] ? entry.elements["published"].text : nil,
+          :username     => entry.elements["yt:username"].text
         )
       end
     end
