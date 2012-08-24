@@ -291,7 +291,7 @@ class YouTubeIt
           :hobbies        => entry.elements["yt:hobbies"] ? entry.elements["yt:hobbies"].text : nil,
           :hometown       => entry.elements["yt:hometown"] ? entry.elements["yt:hometown"].text : nil,
           :location       => entry.elements["yt:location"] ? entry.elements["yt:location"].text : nil,
-          :user_id        => entry.elements["author"].elements["yt:userId"].text rescue nil,
+          :user_id        => (entry.elements["author"].elements["yt:userId"].text rescue nil),
           :last_login     => entry.elements["yt:statistics"].attributes["lastWebAccess"],
           :join_date      => entry.elements["published"] ? entry.elements["published"].text : nil,
           :movies         => entry.elements["yt:movies"] ? entry.elements["yt:movies"].text : nil,
