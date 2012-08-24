@@ -19,6 +19,7 @@ class YouTubeIt
       attr_reader :subscribers
       attr_reader :upload_views
       attr_reader :username
+      attr_reader :user_id
       attr_reader :videos_watched
       attr_reader :view_count
       attr_reader :avatar
